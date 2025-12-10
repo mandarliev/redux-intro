@@ -37,18 +37,52 @@ function reducer(state = initialState, action) {
 }
 
 const store = createStore(reducer);
-console.log(store.getState().balance);
-store.dispatch({ type: "account/deposit", payload: 500 });
-console.log(store.getState().balance);
-store.dispatch({ type: "account/withdraw", payload: 200 });
-console.log(store.getState().balance);
 
-store.dispatch({
-  type: "account/requestLoan",
-  payload: { amount: 1000, loanPurpose: "Buy a car" },
-});
+// console.log(store.getState().balance);
+// store.dispatch({ type: "account/deposit", payload: 500 });
+// console.log(store.getState().balance);
+// store.dispatch({ type: "account/withdraw", payload: 200 });
+// console.log(store.getState().balance);
 
+// store.dispatch({
+//   type: "account/requestLoan",
+//   payload: { amount: 1000, loanPurpose: "Buy a car" },
+// });
+
+// console.log(store.getState());
+
+// store.dispatch({ type: "account/payLoan" });
+// console.log(store.getState());
+
+function deposit(amount) {
+  return { type: "account/deposit", payload: amount };
+}
+
+function withdraw(amount) {
+  return { type: "account/withdraw", payload: amount };
+}
+
+function requestLoan(amount, loanPurpose) {
+  return {
+    type: "account/requestLoan",
+    payload: { amount, loanPurpose },
+  };
+}
+
+function payLoan() {
+  return {
+    type: "account/payLoan",
+  };
+}
+
+store.dispatch(deposit(500));
 console.log(store.getState());
 
-store.dispatch({ type: "account/payLoan" });
+store.dispatch(withdraw(200));
+console.log(store.getState());
+
+store.dispatch(requestLoan(1000, "Buy a cheap car"));
+console.log(store.getState());
+
+store.dispatch(payLoan());
 console.log(store.getState());
