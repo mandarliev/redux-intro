@@ -10,6 +10,7 @@ function AccountOperations() {
   const [currency, setCurrency] = useState("USD");
 
   const dispatch = useDispatch();
+
   const {
     loan: currentLoan,
     loanPurpose: currentLoanPurpose,
